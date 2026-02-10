@@ -1,0 +1,93 @@
+.home-carousel-container {
+  margin-bottom: 30px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.carousel-slide {
+  outline: none;
+}
+
+.banner-content {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  height: 300px;
+  padding: 0 50px;
+  border-radius: 10px;
+}
+
+.banner-text {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.banner-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.banner-text p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.banner-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #32CD32;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.banner-btn:hover {
+  background-color: #228B22;
+}
+
+.banner-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.banner-image img {
+  max-height: 250px;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .banner-content {
+    flex-direction: column-reverse;
+    height: auto;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .banner-text {
+    padding-right: 0;
+    margin-top: 20px;
+  }
+
+  .banner-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .banner-image img {
+    max-height: 180px;
+  }
+  
+  .slick-prev, .slick-next {
+    display: none !important;
+  }
+}
