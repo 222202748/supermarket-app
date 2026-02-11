@@ -119,7 +119,7 @@ const Navbar = () => {
       </div>
 
       {/* Navigation Menu */}
-      <nav className={`main-nav ${mobileMenuOpen ? 'open' : ''}`}>
+      <nav className={`main-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <div className="container">
           <ul className="nav-links">
             <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link></li>

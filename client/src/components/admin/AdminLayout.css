@@ -45,35 +45,6 @@
   display: none;
 }
 
-.user-info {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  background-color: #3498db;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  margin-right: 15px;
-}
-
-.user-details p {
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.user-role {
-  font-size: 0.8rem;
-  color: #bdc3c7;
-}
-
 .sidebar-nav {
   flex: 1;
   padding: 20px 0;
@@ -129,13 +100,12 @@
 .admin-main {
   flex: 1;
   margin-left: 260px;
-  transition: margin-left 0.3s ease;
-  width: calc(100% - 260px);
+  transition: all 0.3s ease;
+  min-width: 0; /* Prevent flex overflow */
 }
 
-.admin-sidebar.closed + .admin-main {
+.admin-main.full-width {
   margin-left: 0;
-  width: 100%;
 }
 
 .admin-header {

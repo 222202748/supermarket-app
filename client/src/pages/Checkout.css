@@ -105,6 +105,31 @@
 }
 
 .place-order-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 992px) {
+  .checkout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkout-section {
+    padding: 20px;
+  }
+}
+
+.place-order-btn:hover {
+  background: #28a745;
+}
+
+.place-order-btn:disabled {
   background: #a5d6a7;
   cursor: not-allowed;
 }

@@ -53,8 +53,11 @@ const categoriesData = [
 const connectDB = async () => {
   try {
     await mongoose.connect('mongodb://localhost:27017/supermarket', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      serverApi: {
+        version: mongoose.mongo.ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
     });
     console.log('MongoDB Connected');
     

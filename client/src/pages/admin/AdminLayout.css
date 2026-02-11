@@ -1,0 +1,259 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+}
+
+/* Sidebar Styling */
+.admin-sidebar {
+  width: 260px;
+  background: white;
+  border-right: 1px solid #e1e8ed;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+}
+
+.admin-sidebar.closed {
+  width: 0;
+  overflow: hidden;
+  border-right: none;
+}
+
+.sidebar-header {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  background: #32CD32;
+  color: white;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 0 16px 24px;
+  overflow-y: auto;
+}
+
+.nav-header {
+  padding: 24px 12px 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  color: #64748b;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: none;
+  background: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.nav-item:hover {
+  background: #f8fafc;
+  color: #32CD32;
+}
+
+.nav-item.active {
+  background: #f0fdf4;
+  color: #166534;
+  font-weight: 600;
+}
+
+/* Specific Style for Categories (as seen in image) */
+.nav-item.active .nav-icon,
+.nav-item.active .nav-label {
+  color: #166534;
+}
+
+.nav-icon {
+  margin-right: 12px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-label {
+  flex: 1;
+  white-space: nowrap;
+}
+
+/* Menu Trigger Styling */
+.menu-trigger {
+  padding-right: 8px;
+}
+
+.menu-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.3s;
+  color: #94a3b8;
+}
+
+.menu-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* Submenu Styling */
+.nav-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 40px;
+}
+
+.nav-menu-group.open .nav-submenu {
+  max-height: 200px;
+  margin-bottom: 8px;
+}
+
+.submenu-item {
+  display: block;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  color: #64748b;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s;
+  margin-bottom: 2px;
+}
+
+.submenu-item:hover {
+  color: #32CD32;
+  background: #f8fafc;
+}
+
+.submenu-item.active {
+  color: #166534;
+  font-weight: 600;
+}
+
+/* Main Content Area */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevent flex overflow */
+}
+
+.admin-header {
+  height: 64px;
+  background: white;
+  border-bottom: 1px solid #e1e8ed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.sidebar-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle-btn:hover {
+  background: #f1f5f9;
+}
+
+.view-site-btn {
+  padding: 8px 16px;
+  background: #f1f5f9;
+  color: #475569;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.view-site-btn:hover {
+  background: #e2e8f0;
+}
+
+.admin-content {
+  padding: 24px;
+  flex: 1;
+}
+
+/* Responsive Styles */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  
+  .mobile-only {
+    display: flex;
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+  }
+
+  .admin-sidebar.open {
+    left: 0;
+    width: 260px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+
+  .sidebar-toggle-btn {
+    margin-right: 16px;
+  }
+}

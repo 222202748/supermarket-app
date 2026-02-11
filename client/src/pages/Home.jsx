@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import HomeCarousel from '../components/HomeCarousel';
 import CategoryCircles from '../components/CategoryCircles';
@@ -10,30 +9,21 @@ const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [latestProducts, setLatestProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [featuredRes, latestRes, categoriesRes] = await Promise.all([
-          api.get('/products/featured'),
-          api.get('/products?limit=8&sort=createdAt'),
-          api.get('/categories')
-        ]);
-        
-        setFeaturedProducts(featuredRes.data.products || []);
-        setLatestProducts(latestRes.data.products || []);
-        setCategories(categoriesRes.data.categories || []);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+    // Fetch data independently to allow progressive rendering
+    api.get('/products/featured')
+      .then(res => setFeaturedProducts(res.data.products || []))
+      .catch(error => console.error('Error fetching featured products:', error));
 
-  if (loading) return <div className="loading">Loading...</div>;
+    api.get('/products?limit=8&sort=createdAt')
+      .then(res => setLatestProducts(res.data.products || []))
+      .catch(error => console.error('Error fetching latest products:', error));
+
+    api.get('/categories')
+      .then(res => setCategories(res.data.categories || []))
+      .catch(error => console.error('Error fetching categories:', error));
+  }, []);
 
   return (
     <div className="home-page">

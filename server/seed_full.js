@@ -83,7 +83,13 @@ const categoriesStructure = [
 
 const seedDatabase = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/supermarket');
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/supermarket', {
+      serverApi: {
+        version: mongoose.mongo.ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
     console.log('Connected to MongoDB');
 
     // Clear existing data

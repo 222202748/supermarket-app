@@ -1,10 +1,14 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Product = require('./models/Product');
 const Category = require('./models/Category');
 
-mongoose.connect('mongodb://localhost:27017/supermarket', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect(process.env.MONGO_URI, {
+  serverApi: {
+    version: mongoose.mongo.ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
 })
 .then(async () => {
   console.log('Connected to MongoDB');

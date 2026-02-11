@@ -12,6 +12,7 @@ import { CartProvider } from './context/CartContext';
 // Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 
@@ -31,12 +32,16 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 
 // Admin Pages
+import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProducts from './pages/admin/AdminProducts';
 import AdminCategories from './pages/admin/AdminCategories';
 import AdminOrders from './pages/admin/AdminOrders';
 import AdminCustomers from './pages/admin/AdminCustomers';
+import AdminSellers from './pages/admin/AdminSellers';
 import AdminReviews from './pages/admin/AdminReviews';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 // Global Styles
 import './styles/global.css';
@@ -46,6 +51,7 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <ScrollToTop />
           <div className="app">
             <Navbar />
             <main className="main-content">
@@ -58,6 +64,8 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
 
                 {/* Protected Routes */}
                 <Route
@@ -111,53 +119,23 @@ function App() {
 
                 {/* Admin Routes */}
                 <Route
-                  path="/admin/dashboard"
+                  path="/admin"
                   element={
                     <AdminRoute>
-                      <AdminDashboard />
+                      <AdminLayout />
                     </AdminRoute>
                   }
-                />
-                <Route
-                  path="/admin/products"
-                  element={
-                    <AdminRoute>
-                      <AdminProducts />
-                    </AdminRoute>
-                  }
-                />
-                <Route
-                  path="/admin/categories"
-                  element={
-                    <AdminRoute>
-                      <AdminCategories />
-                    </AdminRoute>
-                  }
-                />
-                <Route
-                  path="/admin/orders"
-                  element={
-                    <AdminRoute>
-                      <AdminOrders />
-                    </AdminRoute>
-                  }
-                />
-                <Route
-                  path="/admin/customers"
-                  element={
-                    <AdminRoute>
-                      <AdminCustomers />
-                    </AdminRoute>
-                  }
-                />
-                <Route
-                  path="/admin/reviews"
-                  element={
-                    <AdminRoute>
-                      <AdminReviews />
-                    </AdminRoute>
-                  }
-                />
+                >
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="dashboard" element={<AdminDashboard />} />
+                  <Route path="products" element={<AdminProducts />} />
+                  <Route path="categories" element={<AdminCategories />} />
+                  <Route path="orders" element={<AdminOrders />} />
+                  <Route path="orders/:status" element={<AdminOrders />} />
+                  <Route path="customers" element={<AdminCustomers />} />
+                  <Route path="sellers" element={<AdminSellers />} />
+                  <Route path="reviews" element={<AdminReviews />} />
+                </Route>
               </Routes>
             </main>
             <Footer />

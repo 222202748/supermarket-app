@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { FaEdit, FaTrash, FaPlus, FaTimes, FaCloudUploadAlt } from 'react-icons/fa';
@@ -144,7 +143,7 @@ const AdminProducts = () => {
         setProducts(products.map(p => p._id === editingProduct._id ? response.data.product : p));
         toast.success('Product updated successfully');
       } else {
-        const response = await api.post('/products', productData);
+        await api.post('/products', productData);
         toast.success('Product created successfully');
         // Fetch products again to ensure we have the full object (including populated category)
         fetchProducts();
@@ -207,7 +206,7 @@ const AdminProducts = () => {
         </div>
       </div>
 
-      <div style={{ background: 'white', borderRadius: '10px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)', overflow: 'hidden' }}>
+      <div style={{ background: 'white', borderRadius: '10px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead style={{ background: '#f8f9fa' }}>
             <tr>

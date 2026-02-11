@@ -24,13 +24,44 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Database connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected successfully'))
-.catch((err) => console.error('MongoDB connection error:', err));
+// Database connection and Server Start
+const maskedUri = process.env.MONGO_URI ? process.env.MONGO_URI.replace(/:([^@]+)@/, ':****@') : 'undefined';
+console.log(`Connecting to MongoDB at: ${maskedUri}`);
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 10000, // Increased to 10s
+      connectTimeoutMS: 10000,
+      family: 4, // Force IPv4
+      serverApi: {
+        version: mongoose.mongo.ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
+    console.log('MongoDB connected successfully');
+    
+    // Send a ping to confirm a successful connection
+    await mongoose.connection.db.admin().command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    
+    console.log('Connected to database:', mongoose.connection.name);
+    
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error('MongoDB connection error details:');
+    console.error('Message:', err.message);
+    console.error('Code:', err.code);
+    console.log('Failed to connect to MongoDB. Server not started.');
+    process.exit(1);
+  }
+};
+
+connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -57,10 +88,4 @@ app.use((err, req, res, next) => {
     success: false,
     message: err.message || 'Internal Server Error',
   });
-});
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
 });

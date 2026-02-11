@@ -24,7 +24,7 @@ const HomeCarousel = () => {
       subtitle: "Up to 30% off on organic produce",
       bgColor: "#e8f5e9", // Light green
       image: "https://placehold.co/800x400/e8f5e9/2e7d32?text=Fresh+Vegetables",
-      link: "/products?category=vegetables"
+      link: "/products?category=fresh-vegetables"
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ const HomeCarousel = () => {
       subtitle: "Best prices on milk, bread & eggs",
       bgColor: "#fff3e0", // Light orange
       image: "https://placehold.co/800x400/fff3e0/ef6c00?text=Daily+Essentials",
-      link: "/products?category=dairy"
+      link: "/products?category=dairy-bread-and-eggs"
     },
     {
       id: 3,
@@ -40,7 +40,7 @@ const HomeCarousel = () => {
       subtitle: "Cool drinks and ice creams",
       bgColor: "#e3f2fd", // Light blue
       image: "https://placehold.co/800x400/e3f2fd/1565c0?text=Summer+Special",
-      link: "/products?category=beverages"
+      link: "/products?category=cold-drinks-and-juices"
     }
   ];
 

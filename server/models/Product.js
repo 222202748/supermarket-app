@@ -5,6 +5,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide product name'],
     trim: true,
+    index: true, // Add index for search
   },
   description: {
     type: String,
@@ -25,6 +26,7 @@ const productSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
     required: [true, 'Please provide product category'],
+    index: true,
   },
   images: [{
     url: String,
@@ -48,6 +50,7 @@ const productSchema = new mongoose.Schema({
   isFeatured: {
     type: Boolean,
     default: false,
+    index: true,
   },
   ratings: {
     average: {
@@ -75,6 +78,7 @@ const productSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+    index: true, // Add index for sorting
   },
 });
 

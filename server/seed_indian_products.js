@@ -285,7 +285,13 @@ const seed = async () => {
   try {
     const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/supermarket';
     console.log(`Connecting to ${mongoUri}...`);
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri, {
+      serverApi: {
+        version: mongoose.mongo.ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
     console.log('Connected to MongoDB');
 
     // Create a default user if not exists (optional, not strictly needed for products but good practice)
