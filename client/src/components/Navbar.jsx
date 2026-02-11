@@ -37,31 +37,20 @@ const Navbar = () => {
       <div className="top-bar">
         <div className="container">
           <div className="top-bar-content">
-            <div className="contact-info">
-              <span>📞 Call us: +1 234 567 890</span>
-              <span>✉️ support@supermarket.com</span>
-            </div>
-            <div className="top-bar-links">
-              {isAuthenticated ? (
-                <>
-                  <span>Welcome, {user?.name}!</span>
-                  <button onClick={handleLogout} className="link-btn">Logout</button>
-                </>
-              ) : (
-                <>
-                  <Link to="/login">Login</Link>
-                  <Link to="/register">Register</Link>
-                </>
-              )}
-            </div>
+            {/* Removed contact info and login/register/logout from here */}
           </div>
         </div>
       </div>
+            <li className="nav-contact-info-right">
+              <span>📞 Call us: +1 234 567 890</span>
+              <span style={{ marginLeft: '1em' }}>✉️ support@supermarket.com</span>
+            </li>
 
       {/* Main Header */}
       <div className="main-header">
         <div className="container">
           <div className="header-content">
+
             {/* Logo */}
             <Link to="/" className="logo" title="Sanjana SuperMarket">
               <FaShoppingBasket className="logo-icon" />
@@ -127,8 +116,24 @@ const Navbar = () => {
             <li><Link to="/about" onClick={() => setMobileMenuOpen(false)}>About Us</Link></li>
             <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link></li>
             {isAuthenticated && (
-               <li><Link to="/orders" onClick={() => setMobileMenuOpen(false)}>My Orders</Link></li>
+              <li><Link to="/orders" onClick={() => setMobileMenuOpen(false)}>My Orders</Link></li>
             )}
+            {/* Auth links moved here */}
+            {isAuthenticated ? (
+              <>
+                <li className="nav-user">Welcome, {user?.name}!</li>
+                <li><button onClick={handleLogout} className="link-btn nav-btn logout-bold-white">Logout</button></li>
+              </>
+            ) : (
+              <>
+                <li><Link to="/login" onClick={() => setMobileMenuOpen(false)}>Login</Link></li>
+                <li><Link to="/register" onClick={() => setMobileMenuOpen(false)}>Register</Link></li>
+              </>
+            )}
+            <li className="nav-contact-info-right">
+              <span>📞 Call us: +1 234 567 890</span>
+              <span style={{ marginLeft: '1em' }}>✉️ support@supermarket.com</span>
+            </li>
           </ul>
         </div>
       </nav>
